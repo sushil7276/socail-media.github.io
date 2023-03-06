@@ -3,10 +3,15 @@ import { API_URLS, LOCALSTORAGE_TOKEN_KEY } from '../utils/Index';
 const customFetch = async (url, { body, ...customConfig }) => {
   const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 
-  const headers = {
-    'content-type': 'application/json',
-    Accept: 'application/json',
-  };
+  // const headers = {
+  //   'content-type': 'application/json',
+  //   Accept: 'application/json',
+  // };
+
+  const headers={
+    'content-type':'application/x-www-from-urlencoded'
+  }
+
 
   if (token) {
     headers.Authorization = `Bearer ${token}`;

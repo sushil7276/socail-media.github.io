@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import styles from '../styles/login.module.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { login } from '../api/Index'
+import { useAuth } from '../hooks/Index';
 
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const auth = useAuth();
+    console.log(auth)
 
     // notification not shoing multiple time
     const customId = "custom-id-yes";
@@ -23,7 +26,7 @@ const Login = () => {
             })
         }
 
-        const response = await login(email, password);
+        const response = await auth.login(email, password);
         if (response.success) {
             toast.success('Successfully Logged In', {
                 toastId: customId,
