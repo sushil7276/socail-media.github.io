@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
+import Comment from '../components/Comment';
+
 import styles from '../styles/home.module.css';
-import propType from 'prop-types'
 
 const Home = ({ posts }) => {
 
@@ -10,7 +12,7 @@ const Home = ({ posts }) => {
                     <div className={styles.postHeader}>
                         <div className={styles.postAvatar}>
                             <img
-                                src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"
+                                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                                 alt="user-pic"
                             />
                             <div>
@@ -26,31 +28,26 @@ const Home = ({ posts }) => {
                                     src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
                                     alt="likes-icon"
                                 />
-                                <span>5</span>
+                                <span>{post.likes.length}</span>
                             </div>
 
                             <div className={styles.postCommentsIcon}>
                                 <img
-                                    src="https://as2.ftcdn.net/v2/jpg/01/09/34/83/1000_F_109348365_Z8PhLswPi5USmZxOyH31cpNVspCHfoD5.jpg"
+                                    src="https://cdn-icons-png.flaticon.com/512/13/13673.png"
                                     alt="comments-icon"
                                 />
-                                <span>2</span>
+                                <span>{post.comments.length}</span>
                             </div>
                         </div>
+
                         <div className={styles.postCommentBox}>
                             <input placeholder="Start typing a comment" />
                         </div>
 
                         <div className={styles.postCommentsList}>
-                            <div className={styles.postCommentsItem}>
-                                <div className={styles.postCommentHeader}>
-                                    <span className={styles.postCommentAuthor}>Bill</span>
-                                    <span className={styles.postCommentTime}>a minute ago</span>
-                                    <span className={styles.postCommentLikes}>22</span>
-                                </div>
-
-                                <div className={styles.postCommentContent}>Random comment</div>
-                            </div>
+                            {post.comments.map((comment) => (
+                                <Comment comment={comment} />
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -60,7 +57,7 @@ const Home = ({ posts }) => {
 };
 
 Home.propTypes = {
-    post: propType.array.isRequired
-}
+    posts: PropTypes.array.isRequired,
+};
 
 export default Home;
